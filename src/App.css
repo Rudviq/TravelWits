@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  background-color: #d0d0d0;
+  height: 70vh;
+  padding-top: 30vh;
+  padding-bottom: auto;
 }
 
 .App-logo {
@@ -35,4 +39,161 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.movieOptions{
+  display: flex;
+  flex-direction: column;
+  width: 795px;
+  background-color: white;
+  margin: auto;
+  /* min-height:105px; */
+  align-items: center;
+  padding-top:29px;
+  padding-bottom: 29px;
+  box-sizing: border-box;
+}
+
+.uI{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+
+
+.MI input{
+  height:48px;
+  width: 421px;
+  border: #282c34 solid 1px;
+  padding-left: 20px;
+}
+
+
+.box ,.box1{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 113px;
+  border: #3d3d3d solid 1px;
+  cursor: pointer;
+  height:51.6px;
+}
+
+/* .box{
+  position:fixed;
+}
+
+.box1{
+  position: inherit;
+} */
+.text {
+  flex-grow: 1;
+}
+
+.arrow {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.movieSuggest{
+  display: flex;
+  width: 695.8px;
+  margin-top: 10px;
+}
+
+.container{
+  width: 445px;
+  border: #6d6d6d solid 1px;
+  /* height: 100px; */
+}
+
+.container-rating,.container-genre{
+  border: #282c34 solid 1px;
+  position: absolute;
+  margin-top: 61.6px;
+  margin-bottom: 29px;
+  background-color: white;
+}
+
+.container-rating{
+  width: 239px;
+}
+
+.container-genre{
+  width: 113px;
+}
+.movie-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between movie items */
+}
+
+.movie-item {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.movie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.movie-genre {
+  font-size: 14px;
+  color: #888;
+}
+
+.movie-rating {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  color: #ccc;
+  font-size: 22px;
+}
+
+.star.filled {
+  color: #000000;
+}
+.star.half-filled {
+  position: relative;
+  color: #817373;
+}
+
+.star.half-filled::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #000000;
+}
+
+.rating-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+}
+
+.genre-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  left:0;
+}
+
+.demo{
+  display: flex;
+  flex-direction: column;
 }
