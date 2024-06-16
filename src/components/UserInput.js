@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useCallback} from 'react'
 import MovieInput from './MovieInput'
 import RatingOptions from './RatingOptions';
 import CategoryOptions from './CategoryOptions';
@@ -7,57 +7,45 @@ const UserInput = (props) => {
     const [ isDownArrowR, setIsDownArrowR] = useState(true);
     const [ isDownArrowC, setIsDownArrowC] = useState(true);
     
-    console.log(props.selectedGenre);
-    const handleInputChange = (event) => {
+    
+    const handleInputChange = useCallback((event) => {
       props.setMovieInput(event.target.value);
-    };
+    }, [props.setMovieInput]);
 
-    const handleClickRating = () => {
+    const handleClickRating = useCallback(() => {
+      setIsDownArrowR(prev => !prev);
+      props.setIsRatingVisible(prev => !prev);
       if (isDownArrowR) {
         props.setIsGenreVisible(false);
         setIsDownArrowC(true);
       }
-      setIsDownArrowR(!isDownArrowR);
-      props.setIsRatingVisible(!props.isRatingVisible);
+    }, [isDownArrowR, props.setIsRatingVisible, props.setIsGenreVisible]);
 
-    };
-
-    const handleClickGenre = () => {
-        if (isDownArrowC) {
-          props.setIsRatingVisible(false);
-          setIsDownArrowR(true);
-        }
-        setIsDownArrowC(!isDownArrowC);
-        props.setIsGenreVisible(!props.isGenreVisible);
-    };
-
-    const handleGenreSelect = (genre) => {
-      
-      if (genre === '') {
-        // If 'Any Genre' is selected, clear all selections
-        props.setSelectedGenre([]);
-      } else if (props.selectedGenre.includes(genre)) {
-        // If the genre is already selected, remove it
-        props.setSelectedGenre(props.selectedGenre.filter(g => g !== genre));
-      } else {
-        // If the genre is not selected, add it
-        props.setSelectedGenre([...props.selectedGenre, genre]);
+    const handleClickGenre = useCallback(() => {
+      setIsDownArrowC(prev => !prev);
+      props.setIsGenreVisible(prev => !prev);
+      if (isDownArrowC) {
+        props.setIsRatingVisible(false);
+        setIsDownArrowR(true);
       }
-      
-    };
+    }, [isDownArrowC, props.setIsGenreVisible, props.setIsRatingVisible]);
 
-    const handleRatingSelect = (rating) => {
-      if (rating === 0) {
-        // If 'Any Rating' is selected, clear all selections
-        props.setSelectedRatings([]);
-      } else if (props.selectedRatings.includes(rating)) {
-        // If the rating is already selected, remove it
-        props.setSelectedRatings(props.selectedRatings.filter(r => r !== rating));
-      } else {
-        // If the rating is not selected, add it
-        props.setSelectedRatings([...props.selectedRatings, rating]);
-      }
-    };
+    const handleGenreSelect = useCallback((genre) => {
+      props.setSelectedGenre(prev => 
+        genre === '' ? [] :
+        prev.includes(genre) ? prev.filter(g => g !== genre) :
+        [...prev, genre]
+      );
+    }, [props.setSelectedGenre]);
+
+    const handleRatingSelect = useCallback((rating) => {
+      props.setSelectedRatings(prev => 
+        rating === 0 ? [] :
+        prev.includes(rating) ? prev.filter(r => r !== rating) :
+        [...prev, rating]
+      );
+    }, [props.setSelectedRatings]);
+
 
   return (
     <div className='uI'>
@@ -105,4 +93,4 @@ const UserInput = (props) => {
   )
 }
 
-export default UserInput
+export default React.memo(UserInput);

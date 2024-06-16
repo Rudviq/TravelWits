@@ -47,7 +47,7 @@
   width: 795px;
   background-color: white;
   margin: auto;
-  /* min-height:105px; */
+  min-height:105px;
   align-items: center;
   padding-top:29px;
   padding-bottom: 29px;
